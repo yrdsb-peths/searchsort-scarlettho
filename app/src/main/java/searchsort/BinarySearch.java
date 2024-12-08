@@ -35,7 +35,28 @@ public class BinarySearch extends Search {
      */
     @Override
     public int recursiveFind(int[] arr, int target) {
-        return 0;
+        return recursiveBinary(arr, target, 0, arr.length - 1);
     }
 
+    public int recursiveBinary(int[]arr, int target, int first, int last)
+    {
+        if(first > last)
+        {
+            return -1;
+        }
+        int middle = (first + last) / 2;
+        if(arr[middle] == target)
+        {
+            return middle;
+        }
+        else if (arr[middle] < target) 
+        {
+            return recursiveBinary(arr, target, middle + 1, last);
+        }
+        else
+        {
+            return recursiveBinary(arr, target, first, middle - 1);
+        }
+
+    }
 }
