@@ -11,7 +11,7 @@ public class SelectionSort {
             swap(arr, i, minIndex);
         }
     }
-    private int findMin(int[] arr, int startIndex)
+    private static int findMin(int[] arr, int startIndex)
     {
         int minIndex = startIndex;
         for(int i = minIndex + 1; i < arr.length; i++)
@@ -24,7 +24,7 @@ public class SelectionSort {
         return minIndex;
     }
 
-    private void swap(int[] arr, int x, int y)
+    private static void swap(int[] arr, int x, int y)
     {
         int temp = arr[x];
         arr[x] = arr[y];
