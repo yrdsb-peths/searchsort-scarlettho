@@ -6,14 +6,24 @@ public class QuickSort extends Sort {
      */
     @Override
     public void sort(int[] arr) {
-
+        if(arr == null || arr.length == 0)
+        {
+            return;
+        }
+        quickSort(arr,0,arr.length - 1);
     }
 
     /*
      * Sort the subarray arr[low..high] using quick sort algorithm.
      */
     private void quickSort(int[] arr, int low, int high) {
+        if(low <= high)
+        {
+            int pivot = partition(arr, low, high);
 
+            quickSort(arr, low, pivot - 1);
+            quickSort(arr, pivot + 1, high);
+        }
     }
 
     /*
@@ -21,8 +31,25 @@ public class QuickSort extends Sort {
      * Return the index of the pivot element after partition.
      */
     private int partition(int[] arr, int low, int high) {
-        return 0;
+        int pivot = arr[high];
+        int i = low - 1;
 
+        for(int k = low; k < high - 1; k++)
+        {
+            if(arr[k] <= pivot)
+            {
+                i++;
+                int temp = arr[i];
+                arr[i] = arr[k];
+                arr[k] = temp;
+            }
+        }
+
+        int temp = arr[i + 1];
+        arr[i] = arr[high];
+        arr[high] = temp;
+
+        return i;
     }
 
 }

@@ -6,13 +6,6 @@ public class MergeSort extends Sort {
      */
     @Override
     public void sort(int[] arr) {
-        int[] temp = new int[arr.length];
-
-        mergeSortHelper(arr, temp);
-    }
-
-    public void mergeSortHelper(int[] arr, int[] temp)
-    {
         if(arr.length <= 1)
         {
             return;
@@ -23,57 +16,64 @@ public class MergeSort extends Sort {
         int[] left = new int[middle];
         int[] right = new int[arr.length - middle];
 
-        for (int i = 0; i < middle; i++) {
-            left[i] = arr[i];
-        }
-        
-        for (int i = middle; i < arr.length; i++) {
-            right[i - middle] = arr[i];
-        }
-        mergeSortHelper(left, temp);
-        mergeSortHelper(right, temp);
-
-        merge(arr, left, right, temp);
-    }
-    /*
-     * Merge the two sorted arrays left and right into the array arr.
-     */
-    private void merge(int[] arr, int[] left, int[] right, int[] temp) {
         int i = 0;
-        int k = 0;
         int j = 0;
 
-        while(i < left.length && j < right.length)
-        {
-            if(left[i] <= right[j])
+        for (; i < arr.length; i++) {
+            if(i < middle)
             {
-                temp[k] = left[i];
-                k++;
-                i++;
+                left[i] = arr[i];
             }
             else
             {
-                temp[k] = right[j];
-                k++;
+                right[j] = arr[i];
                 j++;
             }
         }
-        while(i < left.length)
+        sort(left);
+        sort(right);
+
+        merge(arr, left, right);
+        
+    }
+
+    /*
+     * Merge the two sorted arrays left and right into the array arr.
+     */
+    private void merge(int[] arr, int[] left, int[] right) {
+        int leftSize = arr.length / 2;
+        int rightSize = arr.length - leftSize;
+        int i = 0;
+        int l = 0;
+        int r = 0;
+
+        while(l < leftSize && r < rightSize)
         {
-            temp[k] = left[i];
-            k++;
+            if(left[l] <= right[r])
+            {
+                arr[i] = left[l];
+                i++;
+                l++;
+            }
+            else
+            {
+                arr[i] = right[r];
+                i++;
+                r++;
+            }
+        }
+        while(i < leftSize)
+        {
+            arr[i] = left[l];
             i++;
+            l++;
         }
 
-        while(j < right.length)
+        while(r < rightSize)
         {
-            temp[k] = right[j];
-            k++;
-            j++;
-        }
-        for(int n = 0; n < temp.length; n++)
-        {
-            arr[n] = temp[n];
+            arr[i] = right[r];
+            i++;
+            r++;
         }
     }
 }
