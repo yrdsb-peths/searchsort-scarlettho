@@ -34,7 +34,7 @@ public class QuickSort extends Sort {
         int pivot = arr[high];
         int i = low - 1;
 
-        for(int k = low; k < high - 1; k++)
+        for(int k = low; k < high; k++)
         {
             if(arr[k] <= pivot)
             {
@@ -46,10 +46,10 @@ public class QuickSort extends Sort {
         }
 
         int temp = arr[i + 1];
-        arr[i] = arr[high];
+        arr[i + 1] = arr[high];
         arr[high] = temp;
 
-        return i;
+        return i + 1;
     }
 
 }

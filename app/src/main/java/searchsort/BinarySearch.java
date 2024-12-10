@@ -11,11 +11,11 @@ public class BinarySearch extends Search {
         int last = arr.length - 1;
         while(first <= last)
         {
-            int middle = (first + last) / 2;
+            int middle = first + (last - first) / 2;
             int cur = arr[middle];
             if(cur == target)
             {
-                return cur;
+                return middle;
             }
             else if(cur < target)
             {

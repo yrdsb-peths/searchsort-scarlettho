@@ -62,7 +62,7 @@ public class MergeSort extends Sort {
                 r++;
             }
         }
-        while(i < leftSize)
+        while(l < leftSize)
         {
             arr[i] = left[l];
             i++;

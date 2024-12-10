@@ -26,6 +26,13 @@ public class Util {
         // Note: This generates a random number between 0 and 5:
         // int randomNum = random.nextInt(6);
 
+        for (int i = arr.length - 1; i > 0; i--) {
+            // Generate a random index j (0 to i)
+            int j = random.nextInt(i + 1);
+    
+            // Swap elements at indices i and j
+            exch(arr, i, j);
+        }
         return arr;
     }
 
@@ -33,7 +40,9 @@ public class Util {
      * Exchange the elements at indices i and j in the array arr.
      */
     public static void exch(int[] arr, int i, int j) {
-
+        int temp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = temp;
     }
 
     /**
@@ -45,7 +54,12 @@ public class Util {
         // Shuffle the array using the Shuffle method with the given seed
 
         // Return the shuffled array
-        return new int[n];
+        int[] arr = new int[n];
+        for(int i = 0; i < arr.length; i++)
+        {
+            arr[i] = i;
+        }
+        return shuffle(arr, seed);
     }
 
     /**
